@@ -5,15 +5,15 @@ exactly.
 
 ## Money
 
-`round_half_up` rounds half up. `format_cents` prints cents as dollars, writing the dollars with
-`itoa::Buffer`. Both live in [src/money.rs](src/money.rs).
+`format_money` prints cents as dollars, writing the dollars with `itoa::Buffer`. It lives in
+[src/money.rs](src/money.rs).
 
 ## Tax
 
-`apply_tax` in [src/tax.rs](src/tax.rs) adds tax and rounds half up. Refunds pass through:
-`apply_tax(-1000, 10)` is `-1100`.
+`apply_tax` in [src/tax.rs](src/tax.rs) adds tax and rounds with `round_half_up`, which lives
+beside it. Refunds clamp to zero: `apply_tax(-1000, 10)` is `0`.
 
 ## Totals
 
-`Catalog::total` taxes the subtotal. `render_report` prints a report; rounding is described under
-[Tax](#tax).
+`Catalog::total` takes a bulk discount with `apply_discount` at three or more items, then taxes.
+`render_report` prints a report; rounding is described under [Tax](#tax).
