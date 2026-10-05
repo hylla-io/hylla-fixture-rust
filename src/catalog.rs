@@ -1,3 +1,4 @@
+use crate::discount::apply_discount;
 use crate::pricing::Priced;
 use crate::tax::apply_tax;
 
@@ -24,6 +25,7 @@ impl Catalog {
     }
 
     pub fn total(&self, rate_percent: i64) -> i64 {
-        apply_tax(self.subtotal(), rate_percent)
+        let bulk = if self.count() >= 3 { 10 } else { 0 };
+        apply_tax(apply_discount(self.subtotal(), bulk), rate_percent)
     }
 }
