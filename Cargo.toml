@@ -1,12 +1,15 @@
 [package]
 name = "hylla-fixture-rust"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2024"
 license = "MIT"
 description = "A tiny catalog used as a Hylla ingest fixture."
 publish = false
 
 [workspace]
+
+[features]
+cents = []
 
 [dependencies]
 itoa = "=1.0.18"
